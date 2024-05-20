@@ -42,6 +42,8 @@ return {
 				"prettier",
 				"stylua",
 				"isort",
+				"autopep8",
+				"flake8",
 				"pylint",
 				"eslint_d",
 			},

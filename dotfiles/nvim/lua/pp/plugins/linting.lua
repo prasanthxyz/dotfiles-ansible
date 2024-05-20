@@ -8,7 +8,7 @@ return {
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			python = { "pylint" },
+			python = { "flake8", "pylint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -23,5 +23,9 @@ return {
 		vim.keymap.set("n", "<leader>l", function()
 			lint.try_lint()
 		end, { desc = "Trigger linting for current file" })
+
+		-- get pylint to work with venv
+		require("lint").linters.pylint.cmd = "python"
+		require("lint").linters.pylint.args = { "-m", "pylint", "-f", "json" }
 	end,
 }
